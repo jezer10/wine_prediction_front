@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    @apply font-roboto bg-[#E6E6E6]
+  }
+
+  @font-face {
+    font-family: 'Ramaraja';
+    src: url(@/assets/fonts/Ramaraja-Regular.ttf) format("truetype");
+  }
+
+
+
+  @font-face {
+    font-family: "Roboto";
+    font-weight: 100;
+    src: url(@/assets/fonts/Roboto-Thin.ttf) format("truetype");
+  }@font-face {
+    font-family: "Roboto";
+    font-weight: 200;
+    src: url(@/assets/fonts/Roboto-Thin.ttf) format("truetype");
+  }@font-face {
+    font-family: "Roboto";
+    font-weight: 300;
+    src: url(@/assets/fonts/Roboto-Light.ttf) format("truetype");
+  }
+  @font-face {
+    font-family: "Roboto";
+    font-weight: 400;
+    src: url(@/assets/fonts/Roboto-Regular.ttf) format("truetype");
+  }
+  @font-face {
+    font-family: "SixCaps";
+    src: url(@/assets/fonts/SixCaps-Regular.ttf) format("truetype");
+  }
+  @font-face {
+    font-family: "WindSong";
+    src: url(@/assets/fonts/WindSong-Medium.ttf) format("truetype");
+  }
+
+  
+}
