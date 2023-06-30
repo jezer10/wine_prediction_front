@@ -51,10 +51,10 @@
                   class="flex flex-col justify-between items-center h-full gap-2"
                 >
                   <span class="font-light text-xl">Estado</span>
-                  <FaceSmileIcon class="w-16 h-16" v-if="predictionValues.state" />
+                  <FaceSmileIcon class="w-16 h-16" v-if="predictionValues.state==1" />
                   <FaceFrownIcon class="w-16 h-16" v-else />
 
-                  <span>Bueno</span>
+                  <span> {{ predictionValues.state==1 ? 'Bueno':'Malo' }}</span>
                 </div>
                 <div class="flex flex-col justify-between items-center gap-2">
                   <span class="font-light text-xl">Color</span>
