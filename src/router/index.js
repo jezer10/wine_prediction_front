@@ -13,7 +13,7 @@ const router = createRouter({
       component: Dashboard,
       name: "dashboard",
       redirect: {
-        name: 'prediction'
+        name: 'clustering'
       },
       children: [
         {
