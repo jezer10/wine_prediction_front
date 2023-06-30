@@ -5,6 +5,9 @@ export default {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      spacing: {
+        76: "19rem",
+      },
       fontFamily: {
         roboto: ["'Roboto'", defaultTheme.fontFamily.sans],
         ramaraja: ["'Ramaraja'", defaultTheme.fontFamily.sans],

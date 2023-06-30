@@ -4,25 +4,34 @@
 
 @layer base {
   :root {
-    @apply font-roboto bg-[#E6E6E6]
+    @apply font-roboto bg-[#E6E6E6];
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
   }
 
   @font-face {
-    font-family: 'Ramaraja';
+    font-family: "Ramaraja";
     src: url(@/assets/fonts/Ramaraja-Regular.ttf) format("truetype");
   }
-
-
 
   @font-face {
     font-family: "Roboto";
     font-weight: 100;
     src: url(@/assets/fonts/Roboto-Thin.ttf) format("truetype");
-  }@font-face {
+  }
+  @font-face {
     font-family: "Roboto";
     font-weight: 200;
     src: url(@/assets/fonts/Roboto-Thin.ttf) format("truetype");
-  }@font-face {
+  }
+  @font-face {
     font-family: "Roboto";
     font-weight: 300;
     src: url(@/assets/fonts/Roboto-Light.ttf) format("truetype");
@@ -33,6 +42,21 @@
     src: url(@/assets/fonts/Roboto-Regular.ttf) format("truetype");
   }
   @font-face {
+    font-family: "Roboto";
+    font-weight: 500;
+    src: url(@/assets/fonts/Roboto-Medium.ttf) format("truetype");
+  }
+  @font-face {
+    font-family: "Roboto";
+    font-weight: 700;
+    src: url(@/assets/fonts/Roboto-Bold.ttf) format("truetype");
+  }
+  @font-face {
+    font-family: "Roboto";
+    font-weight: 900;
+    src: url(@/assets/fonts/Roboto-Black.ttf) format("truetype");
+  }
+  @font-face {
     font-family: "SixCaps";
     src: url(@/assets/fonts/SixCaps-Regular.ttf) format("truetype");
   }
@@ -41,5 +65,17 @@
     src: url(@/assets/fonts/WindSong-Medium.ttf) format("truetype");
   }
 
-  
+  table > thead > tr > th {
+    @apply text-left border-x-0 border-y px-4 py-1 text-sm font-medium whitespace-nowrap;
+  }
+  table > tbody > tr > td {
+    @apply border;
+  }
+  /* input {
+    @apply w-full  focus:outline;
+  } */
+
+  input{
+    @apply bg-[#DFDFDF] rounded-lg px-4 py-4 focus:outline-none placeholder:text-xs text-sm font-thin
+  }
 }
