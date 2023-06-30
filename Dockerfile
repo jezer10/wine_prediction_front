@@ -1,20 +1,16 @@
-# Etapa de construcción
-FROM node AS builder
+FROM node:latest as builder
 
 WORKDIR /app
 
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 COPY . .
-
 RUN yarn build
 
-FROM nginx
+FROM nginx:latest
 
 COPY --from=builder /app/dist /usr/share/nginx/html
-
-COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
