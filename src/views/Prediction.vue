@@ -11,6 +11,7 @@ export default {
     isOpen: false,
     predictionData: {},
     informationData: {},
+    predictionValues: {},
   }),
   mounted() {
     this.getParameters();
@@ -26,20 +27,26 @@ export default {
       this.informationData = all;
     },
     async predictData() {
-      console.log(this.predictionData);
-      return;
       const { data } = await client.post("predict/tree", {
         wines: [this.predictionData],
       });
-      console.log(data);
+      this.predictionValues = data;
       this.isOpen = true;
     },
+    async closeModal(){
+      this.isOpen = false
+      this.predictionData = {}
+    }
   },
 };
 </script>
 
 <template>
-  <PredictionModal :show="isOpen" @closed="isOpen = false" />
+  <PredictionModal
+    :show="isOpen"
+    @closed="closeModal"
+    :predictionValues="predictionValues"
+  />
   <div class="flex flex-col gap-12 p-12">
     <div class="text-white rounded-lg bg-[#9E094F] p-4">
       <div class="font-bold text-4xl">Prediccion de datos</div>

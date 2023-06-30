@@ -27,7 +27,7 @@
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="text-[#747070]  transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+              class="text-[#747070] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
             >
               <div>
                 <div>
@@ -38,23 +38,28 @@
                 </div>
               </div>
               <div class="flex gap-16 py-16 px-24 items-stretch">
-                <div class="flex flex-col justify-between items-center gap-2 h-full">
+                <div
+                  class="flex flex-col justify-between items-center gap-2 h-full"
+                >
                   <span class="font-light text-xl">Calidad</span>
-                  <span class="text-6xl font-bold">4.5</span>
+                  <span class="text-6xl font-bold">{{ predictionValues.quality }}</span>
                   <div class="flex gap-2 text-yellow-300">
-                    <star-icon v-for="star in 5" class="w-4 h-4" />
+                    <star-icon v-for="star in predictionValues.quality" class="w-4 h-4" />
                   </div>
                 </div>
-                <div class="flex flex-col justify-between items-center h-full gap-2">
+                <div
+                  class="flex flex-col justify-between items-center h-full gap-2"
+                >
                   <span class="font-light text-xl">Estado</span>
-                  <FaceSmileIcon class="w-16 h-16"/>
+                  <FaceSmileIcon class="w-16 h-16" v-if="predictionValues.state" />
+                  <FaceFrownIcon class="w-16 h-16" v-else />
+
                   <span>Bueno</span>
                 </div>
-                <div class="flex flex-col justify-between items-center  gap-2">
+                <div class="flex flex-col justify-between items-center gap-2">
                   <span class="font-light text-xl">Color</span>
-                  <div class="bg-[#9E094F] h-8 w-16 rounded-lg"></div>
-                  <span>Vino Tinto</span>
-
+                  <div class=" h-8 w-16 rounded-lg" :class="[predictionValues.color == 'red' ? 'bg-[#9E094F]' : 'bg-yellow-100']"></div>
+                  <span>{{ predictionValues.color == 'red' ? 'Vino Tinto' : 'Vino Blanco' }}</span>
                 </div>
               </div>
               <div class="flex justify-center">
@@ -82,7 +87,12 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/vue";
-import { StarIcon, XMarkIcon,FaceSmileIcon } from "@heroicons/vue/24/solid";
+import {
+  StarIcon,
+  XMarkIcon,
+  FaceSmileIcon,
+  FaceFrownIcon,
+} from "@heroicons/vue/24/solid";
 export default {
   components: {
     TransitionRoot,
@@ -92,13 +102,17 @@ export default {
     DialogTitle,
     StarIcon,
     XMarkIcon,
-    FaceSmileIcon
+    FaceSmileIcon,
+    FaceFrownIcon,
   },
 
   props: {
     show: Boolean,
+    predictionValues: Object,
   },
-
+  mounted() {
+    console.log(this.predictionValues);
+  },
   methods: {
     closeModal() {
       this.$emit("closed");
