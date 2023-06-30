@@ -1,4 +1,4 @@
-FROM node as builder
+FROM node:lts as builder
 WORKDIR /app
 COPY . .
 RUN npm cache clean --force
