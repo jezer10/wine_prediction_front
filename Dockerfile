@@ -1,18 +1,20 @@
 # Etapa de construcción
-FROM node:lts-alpine as builder
+FROM node AS builder
 
 WORKDIR /app
 
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
+
 COPY . .
 
-RUN npm ci
-RUN npm run build
+RUN yarn build
 
-FROM nginx:stable-alpine
+FROM nginx
 
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
