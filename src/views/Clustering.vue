@@ -1,8 +1,13 @@
 <script>
 import { client } from "../api/client";
+import GraphModal from "../components/GraphModal.vue";
 import _ from "lodash";
 export default {
+  components: {
+    GraphModal,
+  },
   data: () => ({
+    isOpen: false,
     predictionData: {
       fixedAcidity: null,
       volatileAcidity: null,
@@ -34,17 +39,22 @@ export default {
     toNormalCase(str) {
       return _.startCase(_.camelCase(str));
     },
+    showGraph() {
+      this.isOpen = true
+    },
   },
 };
 </script>
 
 <template>
+  <GraphModal @closed='isOpen = false' :show="isOpen"></GraphModal>
   <div class="flex flex-col gap-4 p-20 pt-0 pb-0 h-full">
     <div class="text-white rounded-lg bg-[#9E094F] p-4">
       <div class="font-bold text-4xl">Clusterizacion</div>
       <div class="font-light">
         Comparación de datos entre vino tinto y vino blanco
       </div>
+      <button @click="showGraph">Mostrar Graficos</button>
     </div>
     <div class="grid grid-cols-2 gap-12 h-full">
       <div class="shadow-lg rounded-lg h-full flex flex-col">

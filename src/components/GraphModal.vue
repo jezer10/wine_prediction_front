@@ -27,18 +27,15 @@
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+              class="w-full max-w-2xl transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
             >
               <DialogTitle
                 as="h3"
                 class="text-lg font-medium leading-6 text-gray-900"
               >
-                Payment successful
-                {{ column }} {{ show }}
+              <img src="http://144.22.56.92:5000/graph/pca" alt="" class="w-full">
               </DialogTitle>
-              <div class="mt-2">
-                <img :src="`${getBaseUrl}/graph/histogram?column=${column}`" />
-              </div>
+          
 
               <div class="mt-4">
                 <button
