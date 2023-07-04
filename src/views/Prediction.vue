@@ -67,17 +67,17 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-col gap-8 px-8">
+  <div class="flex flex-col gap-8 sm:px-8">
     <div class="text-white rounded-lg bg-[#9E094F] p-4">
-      <div class="font-bold text-4xl">Prediccion de datos</div>
-      <div class="font-light">
+      <div class="font-bold text-xl sm:text-4xl">Prediccion de datos</div>
+      <div class="font-light text-xs sm:text-base">
         Predice la calidad, estado y el color del vino
       </div>
     </div>
-    <div class="flex items-center gap-4">
+    <div class="flex  flex-col sm:flex-row items-center gap-2 sm:gap-4">
       <label
         for="file_input"
-        class="cursor-pointer flex items-center gap-2 bg-[#5C1C3A] text-white px-4 rounded-lg py-2 font-light text-sm"
+        class="cursor-pointer w-full sm:w-auto  text-center bg-[#5C1C3A] text-white px-4 rounded-lg py-2 font-light text-sm"
       >
         Seleccionar Archivo
       </label>
@@ -92,7 +92,7 @@ export default {
       <button
         @click="importData"
         :disabled="!selectedFile?.name"
-        class="flex items-center gap-2 text-[#5C1C3A] px-4 rounded-lg py-2 font-light text-sm"
+        class=" text-[#5C1C3A] px-4 rounded-lg py-2 font-light text-sm w-full sm:w-auto truncate text-center"
       >
         {{
           selectedFile?.name
@@ -101,7 +101,7 @@ export default {
         }}
       </button>
     </div>
-    <div class="grid grid-cols-4 gap-x-4 gap-y-2">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-8 sm:gap-x-4 sm:gap-y-2">
       <div class="flex flex-col" v-for="key in Object.keys(informationData)">
         <span class="font-thin text-[#686868]">{{ toNormalCase(key) }}</span>
         <input

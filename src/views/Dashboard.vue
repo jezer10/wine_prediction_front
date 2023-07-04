@@ -7,6 +7,7 @@ import {
   PresentationChartLineIcon,
   ChartPieIcon,
   PresentationChartBarIcon,
+  Bars3Icon,
 } from "@heroicons/vue/24/solid";
 
 export default {
@@ -18,16 +19,27 @@ export default {
     ChartPieIcon,
     PresentationChartBarIcon,
     GraphModal,
+    Bars3Icon,
   },
   data: () => ({
     isOpen: false,
+    isSideOpen: false,
   }),
 };
 </script>
 
 <template>
-  <div class="h-screen p-4 relative pl-76">
-    <div class="h-full w-72 pr-0 flex-none absolute top-0 left-0 p-4">
+  <button
+    @click="isSideOpen = !isSideOpen"
+    class="w-12 h-12 rounded-full p-2 text-white fixed bottom-4 right-4 bg-red-900 z-20 block sm:hidden"
+  >
+    <Bars3Icon class="w-full h-full" />
+  </button>
+  <div class="h-screen p-4 relative sm:pl-76">
+    <div
+      class="h-full w-72 pr-0 flex-none top-0 p-4 fixed z-20"
+      :class="[isSideOpen ? 'left-0' : '-left-full sm:left-0 ']"
+    >
       <div
         class="gradient-card rounded-xl h-full w-full px-8 py-4 flex flex-col justify-between"
       >

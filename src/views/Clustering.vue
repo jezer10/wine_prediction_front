@@ -59,19 +59,18 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-col h-full gap-8 px-8">
+  <div class="flex flex-col h-auto sm:h-full gap-8 sm:px-8">
     <div class="text-white rounded-lg bg-[#9E094F] p-4 relative">
       <img
-        class="absolute bottom-0 right-0"
+        class="absolute bottom-0 right-0 hidden sm:block"
         src="@/assets/images/clustering.png"
-        alt=""
       />
-      <div class="font-bold text-4xl">Clusterizacion</div>
-      <div class="font-light">
+      <div class="font-bold text-xl sm:text-4xl">Clusterizacion</div>
+      <div class="font-light text-xs sm:text-base">
         Comparación de datos entre vino tinto y vino blanco
       </div>
     </div>
-    <div class="grid grid-cols-2 gap-16 h-full">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-16 h-full px-6 sm:px-0">
       <div class="shadow-lg rounded-lg h-full flex flex-col">
         <div class="h-48">
           <img
@@ -86,7 +85,7 @@ export default {
             >
             <img src="@/assets/images/red_label.png" class="w-68" />
           </div>
-          <div class="grid grid-cols-4 gap-4 px-4">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 px-4">
             <div
               v-for="wine in wineImportances.red"
               class="text-center rounded-lg shadow-lg aspect-square bg-[#EBEBEB] text-[#6B6B6B] flex flex-col gap-2 items-center justify-center"
@@ -115,7 +114,7 @@ export default {
             >
             <img src="@/assets/images/blue_label.png" class="w-68" />
           </div>
-          <div class="grid grid-cols-4 gap-4 px-4">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 px-4">
             <div
               v-for="wine in wineImportances.white"
               class="text-center shadow-lg rounded-lg aspect-square bg-[#EBEBEB] text-[#6B6B6B] flex flex-col gap-2 items-center justify-center"
@@ -132,8 +131,10 @@ export default {
       </div>
     </div>
   </div>
-  <div class="flex mt-8 py-4 h-full gap-8  px-8 text-[#747070]">
-    <div class="w-1/3 flex flex-col gap-4">
+  <div
+    class="flex flex-col sm:flex-row mt-8 py-4 h-auto sm:h-full gap-8 sm:px-8 text-[#747070]"
+  >
+    <div class="w-full sm:w-1/3 flex flex-col gap-4">
       <div class="flex gap-4">
         <div>
           <img src="@/assets/icons/shadow.svg" class="w-16 h-16" />
@@ -144,12 +145,23 @@ export default {
         </div>
       </div>
       <div class="text-sm font-light">
-        Se revelan dos clusters distintos que representan dos colores de vino: el vino tinto y el vino blanco. El Cluster 1, asociado con el vino tinto, exhibe características distintivas que incluyen altos niveles de acidez, un aroma intenso y complejo, un cuerpo completo y una alta astringencia. Por otro lado, el Cluster 2, que representa el vino blanco, muestra niveles moderados de acidez, un aroma suave y delicado, un cuerpo ligero y una baja astringencia. Estos resultados permiten una diferenciación clara entre los dos tipos de vino basada en las variables y características analizadas durante el proceso de PCA.
+        Se revelan dos clusters distintos que representan dos colores de vino:
+        el vino tinto y el vino blanco. El Cluster 1, asociado con el vino
+        tinto, exhibe características distintivas que incluyen altos niveles de
+        acidez, un aroma intenso y complejo, un cuerpo completo y una alta
+        astringencia. Por otro lado, el Cluster 2, que representa el vino
+        blanco, muestra niveles moderados de acidez, un aroma suave y delicado,
+        un cuerpo ligero y una baja astringencia. Estos resultados permiten una
+        diferenciación clara entre los dos tipos de vino basada en las variables
+        y características analizadas durante el proceso de PCA.
       </div>
     </div>
-    <div class="w-2/3">
+    <div class="w-full sm:w-2/3">
       <div class="w-full h-full bg-white rounded-lg shadow">
-        <img :src="clusterGraphUrl" class="w-full h-full shadow object-contain rounded-lg" />
+        <img
+          :src="clusterGraphUrl"
+          class="w-full h-full shadow object-contain rounded-lg"
+        />
       </div>
     </div>
   </div>

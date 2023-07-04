@@ -1,15 +1,12 @@
 <template>
-  <div
-    v-if="show"
-    class="text-[#747070] transform overflow-hidden rounded-2xl p-6 text-left align-middle transition-all"
-  >
+  <div v-if="show" class="text-[#747070] flex flex-col gap-4 sm:gap-0">
     <div>
-      <div>
-        <h3 class="leading-6 text-3xl font-bold">Resultados</h3>
-        <div>Puntaje de la prediccion</div>
-      </div>
+      <h3 class="leading-6 text-3xl font-bold">Resultados</h3>
+      <div>Puntaje de la prediccion</div>
     </div>
-    <div class="flex gap-16 py-16 px-24 items-stretch justify-center">
+    <div
+      class="flex flex-col sm:flex-row gap-16 sm:py-16 sm:px-24 items-stretch justify-center"
+    >
       <div class="flex flex-col justify-between items-center gap-2 h-full">
         <span class="font-light text-xl">Calidad</span>
         <span class="text-6xl font-bold">{{ predictionValues.quality }}</span>
