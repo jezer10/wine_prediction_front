@@ -26,28 +26,38 @@ export default {
       white: {},
       red: {},
     },
+    wineImportances: {
+      white: [],
+      red: [],
+    },
   }),
-  mounted() {
-    this.getData();
+  async mounted() {
+    await this.getProfile();
+    console.log(this.wineImportances)
   },
   methods: {
+    async getProfile() {
+      const { data } = await client.get("/profile");
+      this.wineImportances = data;
+    },
     async getData() {
       const { data } = await client.get("/summary");
       this.wineData = data;
-      console.log(this.wineData);
     },
     toNormalCase(str) {
       return _.startCase(_.camelCase(str));
     },
     showGraph() {
-      this.isOpen = true
+      this.$router.push({
+        name: "graph",
+      });
     },
   },
 };
 </script>
 
 <template>
-  <GraphModal @closed='isOpen = false' :show="isOpen"></GraphModal>
+  <GraphModal @closed="isOpen = false" :show="isOpen"></GraphModal>
   <div class="flex flex-col gap-4 p-20 pt-0 pb-0 h-full">
     <div class="text-white rounded-lg bg-[#9E094F] p-4">
       <div class="font-bold text-4xl">Clusterizacion</div>
@@ -73,14 +83,14 @@ export default {
           </div>
           <div class="grid grid-cols-4 gap-4 px-4">
             <div
-              v-for="wineProp in Object.keys(wineData.red)"
+              v-for="wine in wineImportances.red"
               class="text-center rounded-lg shadow-lg aspect-square bg-[#EBEBEB] text-[#6B6B6B] flex flex-col gap-2 items-center justify-center"
             >
               <div class="font-bold text-2xl">
-                {{ wineData.red[wineProp]["average"] }}
+                {{ wine["avg"] }}
               </div>
               <div class="text-xs">
-                {{ toNormalCase(wineProp) }}
+                {{ toNormalCase(wine.name) }}
               </div>
             </div>
           </div>
@@ -102,14 +112,14 @@ export default {
           </div>
           <div class="grid grid-cols-4 gap-4 px-4">
             <div
-              v-for="wineProp in Object.keys(wineData.white)"
+              v-for="wine in wineImportances.white"
               class="text-center shadow-lg rounded-lg aspect-square bg-[#EBEBEB] text-[#6B6B6B] flex flex-col gap-2 items-center justify-center"
             >
               <div class="font-bold text-2xl">
-                {{ wineData.white[wineProp]["average"] }}
+                {{ wine["avg"] }}
               </div>
               <div class="text-xs">
-                {{ toNormalCase(wineProp) }}
+                {{ toNormalCase(wine.name) }}
               </div>
             </div>
           </div>

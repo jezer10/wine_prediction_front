@@ -79,7 +79,7 @@ export default {
         </div>
       </div>
     </div>
-    <div class="h-full w-full">
+    <div class="h-full w-full overflow-y-auto">
       <router-view></router-view>
     </div>
   </div>

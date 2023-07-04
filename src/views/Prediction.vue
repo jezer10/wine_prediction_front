@@ -33,20 +33,15 @@ export default {
       this.predictionValues = data;
       this.isOpen = true;
     },
-    async closeModal(){
-      this.isOpen = false
-      this.predictionData = {}
-    }
+    async closeModal() {
+      this.isOpen = false;
+      this.predictionData = {};
+    },
   },
 };
 </script>
 
 <template>
-  <PredictionModal
-    :show="isOpen"
-    @closed="closeModal"
-    :predictionValues="predictionValues"
-  />
   <div class="flex flex-col gap-12 p-12">
     <div class="text-white rounded-lg bg-[#9E094F] p-4">
       <div class="font-bold text-4xl">Prediccion de datos</div>
@@ -61,6 +56,8 @@ export default {
           type="number"
           placeholder="Ingrese un valor"
           v-model="predictionData[key]"
+          :min="informationData[key]['min']"
+          :max="informationData[key]['max']"
         />
         <span class="text-xs font-thin">
           (
@@ -75,5 +72,10 @@ export default {
     >
       Predecir datos
     </button>
+    <PredictionModal
+      :show="isOpen"
+      @closed="closeModal"
+      :predictionValues="predictionValues"
+    />
   </div>
 </template>
