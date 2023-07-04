@@ -1,13 +1,11 @@
 <template>
   <div
     v-if="show"
-    class="text-[#747070] transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all"
+    class="text-[#747070] transform overflow-hidden rounded-2xl p-6 text-left align-middle transition-all"
   >
     <div>
       <div>
-        <DialogTitle as="h3" class="leading-6 text-3xl font-bold">
-          Resultados
-        </DialogTitle>
+        <h3 class="leading-6 text-3xl font-bold">Resultados</h3>
         <div>Puntaje de la prediccion</div>
       </div>
     </div>

@@ -3,7 +3,6 @@ import Dashboard from "@/views/Dashboard.vue";
 import Landing from "@/views/Landing.vue";
 import Clustering from "@/views/Clustering.vue";
 import Prediction from "@/views/Prediction.vue";
-import Graph from "@/views/ClusteringGraph.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -18,11 +17,6 @@ const router = createRouter({
         name: "clustering",
       },
       children: [
-        {
-          name: "graph",
-          path: "graph",
-          component: Graph,
-        },
         {
           name: "clustering",
           path: "clustering",

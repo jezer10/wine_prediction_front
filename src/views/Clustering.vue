@@ -1,11 +1,8 @@
 <script>
-import { client } from "../api/client";
-import GraphModal from "../components/GraphModal.vue";
+import { client, baseURL } from "../api/client";
+
 import _ from "lodash";
 export default {
-  components: {
-    GraphModal,
-  },
   data: () => ({
     isOpen: false,
     predictionData: {
@@ -33,7 +30,12 @@ export default {
   }),
   async mounted() {
     await this.getProfile();
-    console.log(this.wineImportances)
+    console.log(this.wineImportances);
+  },
+  computed: {
+    clusterGraphUrl() {
+      return `${baseURL}/graph/pca`;
+    },
   },
   methods: {
     async getProfile() {
@@ -57,16 +59,19 @@ export default {
 </script>
 
 <template>
-  <GraphModal @closed="isOpen = false" :show="isOpen"></GraphModal>
-  <div class="flex flex-col gap-4 p-20 pt-0 pb-0 h-full">
-    <div class="text-white rounded-lg bg-[#9E094F] p-4">
+  <div class="flex flex-col h-full gap-8 px-8">
+    <div class="text-white rounded-lg bg-[#9E094F] p-4 relative">
+      <img
+        class="absolute bottom-0 right-0"
+        src="@/assets/images/clustering.png"
+        alt=""
+      />
       <div class="font-bold text-4xl">Clusterizacion</div>
       <div class="font-light">
         Comparación de datos entre vino tinto y vino blanco
       </div>
-      <button @click="showGraph">Mostrar Graficos</button>
     </div>
-    <div class="grid grid-cols-2 gap-12 h-full">
+    <div class="grid grid-cols-2 gap-16 h-full">
       <div class="shadow-lg rounded-lg h-full flex flex-col">
         <div class="h-48">
           <img
@@ -124,6 +129,27 @@ export default {
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex mt-8 py-4 h-full gap-8  px-8 text-[#747070]">
+    <div class="w-1/3 flex flex-col gap-4">
+      <div class="flex gap-4">
+        <div>
+          <img src="@/assets/icons/shadow.svg" class="w-16 h-16" />
+        </div>
+        <div class="flex flex-col">
+          <div class="font-light text-xl">Grafico de</div>
+          <div class="font-bold text-4xl">Clusterizacion</div>
+        </div>
+      </div>
+      <div class="text-sm font-light">
+        Se revelan dos clusters distintos que representan dos colores de vino: el vino tinto y el vino blanco. El Cluster 1, asociado con el vino tinto, exhibe características distintivas que incluyen altos niveles de acidez, un aroma intenso y complejo, un cuerpo completo y una alta astringencia. Por otro lado, el Cluster 2, que representa el vino blanco, muestra niveles moderados de acidez, un aroma suave y delicado, un cuerpo ligero y una baja astringencia. Estos resultados permiten una diferenciación clara entre los dos tipos de vino basada en las variables y características analizadas durante el proceso de PCA.
+      </div>
+    </div>
+    <div class="w-2/3">
+      <div class="w-full h-full bg-white rounded-lg shadow">
+        <img :src="clusterGraphUrl" class="w-full h-full shadow object-contain rounded-lg" />
       </div>
     </div>
   </div>
