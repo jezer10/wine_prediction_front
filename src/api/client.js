@@ -5,5 +5,4 @@ export const baseURL = `http://${productionDomain}`;
 
 export const client = axios.create({
   baseURL,
-
 });
